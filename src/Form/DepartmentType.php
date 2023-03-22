@@ -4,17 +4,27 @@ namespace App\Form;
 
 use App\Entity\Department;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DeparmentType extends AbstractType
+class DepartmentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
-            ->add('location')
+            ->add('location',ChoiceType::class,[
+                'choices'=>[
+                    'Delft'=>'delft',
+                    'Den Haag'=>'den haag',
+                    'Amsterdam'=>'Amsterdam'
+                ]
+            ])
             ->add('budget')
+            ->add('Save',SubmitType::class)
+
         ;
     }
 
